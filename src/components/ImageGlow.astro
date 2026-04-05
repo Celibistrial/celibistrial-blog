@@ -4,20 +4,19 @@ import { Image } from "astro:assets";
 
 type Props = LocalImageProps | RemoteImageProps;
 
-const { ...props } = Astro.props;
+const { class: className, ...props } = Astro.props;
 
 const width = props.width;
 const height = props.height;
 ---
 
-<div class="glow-image">
+<div class="glow-image" class:list={[className]}>
   <Image {...props} />
   <Image
     width={width ? ((typeof width === 'number' ? width : Number.parseInt(width)) / 4) : undefined} 
     height={height ? ((typeof height === 'number' ? height : Number.parseInt(height)) / 4) : undefined}
     {...props}
     class='glow'
-    class:list={[props.class]}
     quality={75}
   />
 </div>

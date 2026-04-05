@@ -6,15 +6,6 @@ tags: ["blog"]
 ---
 
 
-## Table of Contents
-
-*   [How many children can an adult (you) fight at once](#org959be62)
-    *   [The assumptions](#org853fef7)
-    *   [How most people think the fight would play out](#orgc638169)
-    *   [How the fight would probably play out](#org590f9c6)
-    *   [Tips to fight children](#orgde53154)
-    *   [Conclusion](#orgc5887d6)
-
 ## How many children can an adult (you) fight at once
 
 ### The assumptions

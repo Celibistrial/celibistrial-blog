@@ -8,15 +8,11 @@ tags: ["blog"]
 
 # Peculiar Articles
 
-## Table of Contents
-
-*   [Articles i found interesting](#org8352506)
-
 ## Articles i found interesting
 
 > Articles written by me or chatGPT
 
-*   [You vs children(a fight to the death)](<Adult vs 7 year olds>)
-*   [And thems the facts](<And thems the facts>)
-*   [Toothpicks save lives](toothpick)
-*   [Grilled cheese Obama sandwich​](<Grilled cheese obama sandwich>)
+*   [You vs children(a fight to the death)](/blog/adult-vs-7-year-olds)
+*   [And thems the facts](/blog/and-thems-the-facts)
+*   [Toothpicks save lives](/blog/toothpick)
+*   [Grilled cheese Obama sandwich​](/blog/grilled-cheese-obama-sandwich)

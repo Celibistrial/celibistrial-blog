@@ -8,13 +8,6 @@ tags: ["blog"]
 
 # Making highlight.js work with org-export
 
-## Table of Contents
-
-*   [Intro](#org74e242f)
-*   [Getting started](#orga5ae321)
-*   [Modifying org-publish-project-alist](#orgb00bc36)
-*   [Modifying org-html-src-block](#org4c5a320)
-
 > Highlight.js is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It can work with pretty much any markup, doesn’t depend on any other frameworks, and has automatic language detection.
 
 ## Intro

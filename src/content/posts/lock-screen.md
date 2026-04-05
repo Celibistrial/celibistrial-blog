@@ -6,12 +6,6 @@ tags: ["blog"]
 ---
 
 
-## Table of Contents
-
-*   [Fastest lock screen using i3lock](#org204d100)
-    *   [The script](#orgf701b6f)
-        *   [How the script works](#orgd916b81)
-
 ## Fastest lock screen using i3lock
 
 This is probably the fastest bash script you have ever seen that:-

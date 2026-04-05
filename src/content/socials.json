@@ -7,5 +7,14 @@
 		},
 		"text": "GitHub",
 		"link": "https://github.com/Celibistrial"
+	},
+	{
+		"id": 2,
+		"icon": {
+			"type": "lucide",
+			"name": "linkedin"
+		},
+		"text": "LinkedIn",
+		"link": "https://www.linkedin.com/in/gaurav-choudhury-406405377/"
 	}
 ]

@@ -6,10 +6,6 @@ tags: ["blog"]
 ---
 
 
-## Table of Contents
-
-*   [The best conclusion to a passage](#org88d93e1)
-
 ## The best conclusion to a passage
 
 > "and thems the facts"

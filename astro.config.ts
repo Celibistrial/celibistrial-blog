@@ -17,10 +17,10 @@ const config = defineConfig({
 		mdx(),
 		sitemap(),
 		spectre({
-			name: 'celibistrial.com',
+			name: 'Gaurav Choudhury',
 			openGraph: {
 				home: {
-					title: 'celibistrial.com',
+					title: 'Gaurav Choudhury',
 					description: 'Building useful things, writing about the peculiar.',
 				},
 				blog: {

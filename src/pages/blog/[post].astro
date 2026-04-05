@@ -179,6 +179,21 @@ const { Content, headings } = await render(post);
 		top: 2rem;
 	}
 
+	.mobile-toc {
+		display: none;
+		margin-top: 2rem;
+	}
+
+	@media screen and (max-width: 1380px) {
+		.sidebar-toc {
+			display: none;
+		}
+
+		.mobile-toc {
+			display: block;
+		}
+	}
+
 	article {
 		display: flex;
 		flex-direction: column;

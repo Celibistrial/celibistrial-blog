@@ -8,10 +8,6 @@ tags: ["blog"]
 
 # Toothpick
 
-## Table of Contents
-
-*   [How a toothpick saved my life](#org0ec3e4b)
-
 ## How a toothpick saved my life
 
 Today has been a harrowing experience. As I was relishing a **succulent** piece of steak for lunch, a sudden jolt of agony erupted in my throat. I choked, my airway obstructed, gasping for breath as my face turned crimson. Panic clawed its way through my mind; I was choking to death.

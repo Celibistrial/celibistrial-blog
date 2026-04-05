@@ -6,12 +6,8 @@ tags: ["blog"]
 ---
 
 
-## Table of Contents
-
-*   [Useful articles(blogs)](#orgf0d9f11)
-
 ## Useful articles(blogs)
 
-*   [How to use highlight.js with org-export](<how to integrate highlight.js and org-export>)
-*   [The fastest i3lock wrapper](<lock screen>)
-*   [Easist way to convert org to html in style](<Easily convert org to html>)
+*   [How to use highlight.js with org-export](/blog/how-to-integrate-highlight.js-and-org-export)
+*   [The fastest i3lock wrapper](/blog/lock-screen)
+*   [Easist way to convert org to html in style](/blog/easily-convert-org-to-html)

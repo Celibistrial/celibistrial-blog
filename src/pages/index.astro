@@ -3,7 +3,7 @@ import "../styles/index.css";
 
 import { getCollection, getEntry, render } from "astro:content";
 import { name, openGraph } from "spectre:globals";
-import ProfilePicture from "../assets/pfp.png";
+import ProfilePicture from "../assets/pfp.jpeg";
 import Card from "../components/Card.astro";
 import Icon from "../components/Icon.astro";
 import ImageGlow from "../components/ImageGlow.astro";
@@ -29,11 +29,12 @@ const { Content: About } = await render(about!);
 		<Card class="flex-col-card">
 			<ImageGlow
 				quality={100}
-				width={120}
-				height={120}
+				width={480}
+				height={480}
 				src={ProfilePicture}
 				alt="Gaurav's Profile Picture"
 				loading="eager"
+				class="pfp"
 			/>
 			<h2>{name}</h2>
 			<ul class="overview-list">

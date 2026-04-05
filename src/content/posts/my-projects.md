@@ -8,13 +8,6 @@ tags: ["blog", "projects"]
 
 # My Projects
 
-## Table of Contents
-
-*   [Freelook](#org1cc34bb)
-*   [Celiboard](#orga1476e7)
-*   [Discord TUI](#org705b349)
-*   [Frictionless](#orgcd9782f)
-
 ## [Freelook](https://github.com/Celibistrial/freelook)
 
 This is my most popular project with over `55k` downloads.
