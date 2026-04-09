@@ -8,7 +8,7 @@ import { spectreDark } from './src/ec-theme';
 
 // https://astro.build/config
 const config = defineConfig({
-	site: 'https://celibistrial.com',
+	site: 'https://blog.celibistrial.com',
 	output: 'static',
 	integrations: [
 		expressiveCode({
