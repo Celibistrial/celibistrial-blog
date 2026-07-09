@@ -1,0 +1,28 @@
+baseURL: https://blog.celibistrial.com/
+languageCode: en-us
+title: celibistrial
+enableRobotsTXT: true
+enableEmoji: true
+
+params:
+  description: Notes, writing, and things worth remembering.
+
+pagination:
+  pagerSize: 10
+
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 1
+    - name: Posts
+      url: /posts/
+      weight: 2
+    - name: About
+      url: /about/
+      weight: 3
+
+markup:
+  highlight:
+    noClasses: false
+    style: github
