@@ -12,7 +12,7 @@ tags: ["blog"]
 
 > Articles written by me or chatGPT
 
-*   [You vs children(a fight to the death)](/blog/adult-vs-7-year-olds)
-*   [And thems the facts](/blog/and-thems-the-facts)
-*   [Toothpicks save lives](/blog/toothpick)
-*   [Grilled cheese Obama sandwich​](/blog/grilled-cheese-obama-sandwich)
+*   [You vs children(a fight to the death)](/posts/adult-vs-7-year-olds/)
+*   [And thems the facts](/posts/and-thems-the-facts/)
+*   [Toothpicks save lives](/posts/toothpick/)
+*   [Grilled cheese Obama sandwich​](/posts/grilled-cheese-obama-sandwich/)
