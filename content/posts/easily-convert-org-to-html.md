@@ -6,7 +6,6 @@ tags: ["blog"]
 ---
 
 
-# How to easily convert org to html
 
 \[2024-01-23 Tue\]
 
@@ -16,7 +15,7 @@ Easy snippet to convert any org document to html
 *   run `toggle-org-custom-inline-style` in a org buffer associated with a file
 *   `C-c C-e` to export to html , it should ask you for a theme now
 
-```
+```elisp
 ;; put your css files there
 (defvar org-theme-css-dir "~/.emacs.d/org-css/")
 

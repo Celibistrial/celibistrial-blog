@@ -6,7 +6,6 @@ tags: ["blog"]
 ---
 
 
-# Making highlight.js work with org-export
 
 > Highlight.js is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It can work with pretty much any markup, doesn’t depend on any other frameworks, and has automatic language detection.
 
@@ -26,7 +25,7 @@ We will be modifying the **org-publish-project-alist** variable to bundle in hig
 
 Your org-publish-project-alist should look something like this
 
-```
+```elisp
 (setq org-publish-project-alist
       (list
        (list "celibistrial-website"
@@ -44,7 +43,7 @@ Your org-publish-project-alist should look something like this
 
 To bundle highlight.js simply add these 2 lines
 
-```
+```elisp
              :html-preamble "
 <link rel=\"stylesheet\" href=\"https://unpkg.com/highlightjs@9.16.2/styles/obsidian.css\">
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js\"></script>
@@ -64,7 +63,7 @@ You may have tried using the above steps and are confused as to why highlight.js
 
 Well highlight.js expects code blocks in a specific format
 
-```
+```html
 <pre>
 <code>
   Code goes here
@@ -76,7 +75,7 @@ Highlight.js expects code blocks in the format specified above but by default or
 
 Changing the format is simple
 
-```
+```elisp
 ;; I did not write this , i found it from a stackoverflow post but i am unable to find a link to it
  (defun my/org-html-src-block (html)
   "Modify the output of org-html-src-block for highlight.js"
