@@ -174,16 +174,15 @@ three corridors, a tunnel, a street, an open yard, a garage, an atrium, a sloped
 floor and three warehouses) and rendered 30 LiDAR scans per map with known
 ground truth.
 
-The first results looked excellent. The open yard, a nearly empty paved area,
-scored 91.
+The first results looked excellent. Suspiciously excellent. The open yard, a nearly empty paved area with almost nothing to line up against, scored 91.
 
-![A man in glasses pointing at a butterfly, asking "Is this a pigeon?"](blog_img/pigeon.jpg)
+An empty yard should be hard. Something was handing the localizer the answer, and it wasn't anything in the yard.
 
-*How it feels to get lied to*
+![Dio Brando from JoJo's Bizarre Adventure pointing at himself, grinning](blog_img/dio.jpg)
 
+*Our scan renderer, the whole time*
 
-
-An empty yard should be hard. The 91 was fake. Our renderer cast the
+Our renderer cast the
 synthetic scans against the same point cloud that we then handed to the localizer
 as its map. A point cloud has random density: some cells have a few more points
 than others. The scan inherited exactly that pattern, so scan and map shared a
