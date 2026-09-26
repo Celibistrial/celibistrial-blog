@@ -1,7 +1,7 @@
 ---
 title: "Fastest lock screen using i3lock"
 description: "A blog post about fastest lock screen using i3lock."
-date: "2026-04-04"
+date: "2024-01-01"
 tags: ["blog"]
 ---
 
