@@ -41,6 +41,6 @@ table { border-collapse: collapse; display: block; overflow-x: auto; margin: 20p
 th, td { border-bottom: 1px solid var(--border); padding: 6px 12px; text-align: left; }
 th { color: var(--muted); font-weight: 600; }
 article.post img[src$=".jpg"] { display: block; max-height: 420px; width: auto; margin: 0 auto; }
-article.post p > em:only-child { display: block; text-align: center; color: var(--muted); font-size: .9rem; margin-top: -8px; }
+article.post p:has(> img) + p > em:only-child { display: block; text-align: center; color: var(--muted); font-size: .9rem; margin-top: -8px; }
 article.post img[src$=".jpg"] { max-width: 60%; }
 @media (max-width: 600px) { article.post img[src$=".jpg"] { max-width: 100%; } }
