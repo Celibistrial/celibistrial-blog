@@ -16,6 +16,10 @@ corridor it scored 1.22. Guessing at random scores 1.64.
 
 ![Our dev-tuned method on four maps. 99.91 on the dev warehouse, 61.60 on a second warehouse, 19.24 in a small room, and 1.22 in a dashed corridor, below the 1.637 random baseline](blog_img/hook.png)
 
+![Reiner Braun clenching his fist against a cloudy sky, moments before revealing he is the Armored Titan](blog_img/reiner.jpg)
+
+*eternal.ag, two days before the deadline: "the eval map could be anything." Right here? Right now?*
+
 This post is about how that happened, and what we did in the two days after. Most
 of the "general" choices in our pipeline turned out to be facts about one
 warehouse. We rebuilt the search so it measures those facts from whatever map it
@@ -25,8 +29,7 @@ had been working on.
 
 ## The problem
 
-TechQuest is a hackathon held inside IIT Patna, with several problem statements
-to choose from. We picked the robotics one, set by eternal.ag. A robot is dropped somewhere in a building. You get one 360°
+We took this on at TechQuest, a hackathon held at IIT Patna for the first time this year. We picked the robotics problem, set by eternal.ag. A robot is dropped somewhere in a building. You get one 360°
 LiDAR sweep (a 32-beam laser scanner that returns a cloud of 3D points), one
 camera frame, and a point cloud of the building with geometry only, no colour.
 There's no GPS and no starting guess. You output the robot's full 6-DoF pose.
@@ -106,10 +109,6 @@ with 2 cm range noise, the camera sees 90° with no range, and the map has no co
 for pixels to match. We estimated that letting the camera decide close calls was
 worth about −5 points, so it shipped switched off.
 
-![Edward Elric slouched on a bench, arms spread, looking unimpressed](blog_img/ed.jpg)
-
-*The camera, after costing us 5 points: "this is not the law of equivalent exchange."*
-
 Coarse-to-fine search (a quick low-resolution pass, then a detailed one) was
 faster but lost accuracy on two synthetic test sets.
 On a closer look, 92.6% of the "architecture win" we had credited to it came from
@@ -134,10 +133,6 @@ We spent more time on those 3 mm than on anything else. One at a time we ruled o
 scan noise, grid resolution, surface normals, the robust loss, five ICP variants,
 downsampling, map tilt and range scale. The test that settled it was simple: start
 the refiner exactly at the ground-truth pose and see where it goes. It walks 2.4 mm away, every time.
-
-![Surprised Pikachu with its mouth open](blog_img/pikachu.jpg)
-
-*The refiner, started at the exact ground truth, wandering off by 2.4 mm.*
 
 The map and the ground truth disagree by 2.4 mm. The best possible fit of a scan
 against this map isn't at the true pose, so no registration method can score past
@@ -257,10 +252,6 @@ We sorted 355 failures on the corrected benchmark.
 77.5% were recall failures. Most of Act I had gone into refinement and ranking,
 and no amount of either can recover a pose that was never on the list.
 
-![Gendo Ikari with his hands folded in front of his face, glasses glinting](blog_img/gendo.jpg)
-
-*Us, realizing most of the misses happened before the part we'd spent a week on.*
-
 So we scored the correlation surface directly at the ground-truth pose. The
 truth was almost always a strong peak. In the curved tunnel, which scored 24.78 with
 SR@fine 0.000, the true pose was among the top four peaks in every failing scan.
@@ -360,10 +351,6 @@ against 30,878 in a warehouse.
 That doesn't prove those maps are impossible, and we only tested our own family of
 methods. It does mean that the correlator, the ICP refiner and the camera are all
 working from the same 41 points.
-
-![Roy Mustang pulling on his ignition glove, a transmutation circle on the back](blog_img/mustang_gloves.jpg)
-
-*Mustang's gloves are useless in the rain. Our correlator is useless with 41 points.*
 
 ## What we'd tell ourselves on day one
 
