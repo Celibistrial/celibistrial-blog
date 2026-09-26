@@ -192,6 +192,8 @@ scored 91.
 
 ![A man in glasses pointing at a butterfly, asking "Is this a pigeon?"](blog_img/pigeon.jpg)
 
+*How it feels to get lied to*
+
 
 
 An empty yard should be hard. The 91 was fake. Our renderer cast the
