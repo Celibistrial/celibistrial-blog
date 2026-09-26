@@ -178,9 +178,9 @@ The first results looked excellent. Suspiciously excellent. The open yard, a nea
 
 An empty yard should be hard. Something was handing the localizer the answer, and it wasn't anything in the yard.
 
-![Dio Brando from JoJo's Bizarre Adventure pointing at himself, grinning](blog_img/dio.jpg)
+![Dio Brando from JoJo's Bizarre Adventure pointing at himself, captioned "It was me, Dio!"](blog_img/dio.jpg)
 
-*Our scan renderer, the whole time*
+*You thought the localizer had gotten good*
 
 Our renderer cast the
 synthetic scans against the same point cloud that we then handed to the localizer
