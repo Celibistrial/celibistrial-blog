@@ -27,7 +27,7 @@ main.container { padding-top: 32px; padding-bottom: 40px; }
 .intro { color: var(--muted); font-size: 1.05rem; margin: 0 0 28px; }
 .post-list { list-style: none; padding: 0; margin: 0; }
 .post-list li { display: flex; gap: 16px; align-items: baseline; padding: 8px 0; }
-.post-date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .9rem; min-width: 92px; flex-shrink: 0; }
+.post-date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .9rem; min-width: 110px; flex-shrink: 0; }
 .post-meta { color: var(--muted); font-size: .9rem; margin-top: -8px; }
 .post h1 { margin-bottom: 4px; line-height: 1.2; }
 article.post { line-height: 1.7; }

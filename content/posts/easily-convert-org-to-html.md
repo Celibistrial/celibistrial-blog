@@ -2,6 +2,7 @@
 title: "Publishing beautiful html pages with org"
 description: "An Emacs snippet that lets you pick a CSS theme every time you export an org file to HTML."
 date: "2024-01-01"
+yearOnly: true
 tags: ["blog"]
 ---
 

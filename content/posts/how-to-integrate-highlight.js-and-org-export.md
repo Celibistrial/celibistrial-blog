@@ -2,6 +2,7 @@
 title: "Making highlight.js work with org-export"
 description: "A blog post about making highlight.js work with org-export."
 date: "2024-01-01"
+yearOnly: true
 tags: ["blog"]
 ---
 

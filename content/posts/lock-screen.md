@@ -2,6 +2,7 @@
 title: "Fastest lock screen using i3lock"
 description: "A tiny bash script that blurs your desktop and locks it with i3lock in under a second."
 date: "2024-01-01"
+yearOnly: true
 tags: ["blog"]
 ---
 

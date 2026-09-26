@@ -3,7 +3,7 @@
     <h1>{{ .Title }}</h1>
     {{ if not .Date.IsZero }}
     <p class="post-meta">
-      <time datetime="{{ .Date.Format "2006" }}">{{ .Date.Format "2006" }}</time>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (cond .Params.yearOnly "2006" "Jan 2, 2006") }}</time>
       {{ if gt .ReadingTime 0 }} · {{ .ReadingTime }} min read{{ end }}
     </p>
     {{ end }}
