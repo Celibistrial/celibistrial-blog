@@ -40,3 +40,5 @@ blockquote { border-left: 3px solid var(--border); margin: 0; padding-left: 16px
 table { border-collapse: collapse; display: block; overflow-x: auto; margin: 20px 0; font-size: .92rem; font-variant-numeric: tabular-nums; }
 th, td { border-bottom: 1px solid var(--border); padding: 6px 12px; text-align: left; }
 th { color: var(--muted); font-weight: 600; }
+article.post img[src$=".jpg"] { display: block; max-height: 420px; width: auto; margin: 0 auto; }
+article.post p > em:only-child { display: block; text-align: center; color: var(--muted); font-size: .9rem; margin-top: -8px; }

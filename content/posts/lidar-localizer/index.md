@@ -3,10 +3,10 @@ title: "Generalizing a LiDAR localizer to ridiculous extents"
 description: "From one warehouse to rooms, tunnels and a 400 m corridor with two dashed lines: how our TechQuest localizer went from 99.9 on one map to working on maps it had never seen."
 date: "2026-09-26"
 tags: ["blog"]
-draft: true
+
 ---
 
-*From one warehouse to rooms, tunnels and a 400 m corridor with two dashed lines.*
+
 
 Two days before the deadline, our localizer scored 99.9 out of 100 on the only map
 we had. Then we found out the evaluation might use a completely different map:
@@ -63,10 +63,7 @@ It scored 97.74 on dev, and missed exactly one scenario.
 ### The shelf in the wrong bay
 
 On one scenario, number 14, the baseline got the heading right to 0.08° and the position
-across the aisle right to 3 mm. It was 110 m off along the aisle.
-
-The system found the correct shelf geometry and heading, but because the racks
-repeat every 5 m, it picked the same shelf in the wrong bay.
+across the aisle right to 3 mm. It was 110 m off along the aisle: the racks repeat every 5 m, and it had picked the right shelf in the wrong bay.
 
 ![Top-down view of the dev warehouse. The true pose for scenario 14 and the baseline's answer sit in the same aisle, at the same heading, 110.2 m apart](blog_img/alias_000014.png)
 
@@ -97,7 +94,9 @@ of just matching nearest points. The 40 m crop is how far out the refiner looks.
 The later steps were a second, tighter ICP pass and a Huber loss so a few bad
 matches can't drag the answer.
 
-Plenty of ideas didn't make it, and we logged each with the number that killed it.
+### What didn't work
+
+We logged every rejected idea with the number that killed it.
 
 Our first instinct was that the camera would tell repeating aisles
 apart. An edge-based re-ranker did pick the true pose 37 out of 40 times. But every
@@ -106,6 +105,10 @@ no depth can't measure position against repeating structure. The LiDAR sees 360�
 with 2 cm range noise, the camera sees 90° with no range, and the map has no colour
 for pixels to match. We estimated that letting the camera decide close calls was
 worth about −5 points, so it shipped switched off.
+
+![Edward Elric slouched on a bench, arms spread, looking unimpressed](blog_img/ed.jpg)
+
+*The camera, after costing us 5 points: "this is not the law of equivalent exchange."*
 
 Coarse-to-fine search (a quick low-resolution pass, then a detailed one) was
 faster but lost accuracy on two synthetic test sets.
@@ -132,6 +135,10 @@ scan noise, grid resolution, surface normals, the robust loss, five ICP variants
 downsampling, map tilt and range scale. The test that settled it was simple: start
 the refiner exactly at the ground-truth pose and see where it goes. It walks 2.4 mm away, every time.
 
+![Surprised Pikachu with its mouth open](blog_img/pikachu.jpg)
+
+*The refiner, started at the exact ground truth, wandering off by 2.4 mm.*
+
 The map and the ground truth disagree by 2.4 mm. The best possible fit of a scan
 against this map isn't at the true pose, so no registration method can score past
 that on raw poses. Subtracting the offset looked defensible, since a quirk of the map would carry over to an evaluation on the same
@@ -147,10 +154,7 @@ The eval map is anonymous. It could be a small room or a kilometres-long road wi
 two dashed lines, and it replaces the dev warehouse inside the code we submit.
 
 We had written our bet down a week earlier, in our notes: *"hidden set = SAME
-warehouse, new poses."* The problem statement had moved under us before, in
-smaller ways. On day one the PDF brief and the challenge repo disagreed on the
-grading weights (60/20/20 against 40/30/20/10), and we went with the repo. Later we assumed running time
-didn't count toward the grade and had to take that back. Those were changes to how we were graded. This one changed what we were being graded on.
+warehouse, new poses."* It was wrong.
 
 We measured what it cost that evening, with 30 synthetic poses per map:
 
@@ -166,8 +170,7 @@ rack pitch, and we lost 38 points on it.
 
 ### Our "general" choices were warehouse facts
 
-When we went looking for why, every constant we checked turned out to be a
-measurement of dev.
+Every constant we checked turned out to be a measurement of dev, the only map any of them had ever been tested on.
 
 - Band heights were fractions of the map's height. On dev that gives bands from
   0.12 to 10 m. In a 1.3 m corridor it gives bands from 1 cm to 1.1 m.
@@ -177,9 +180,7 @@ measurement of dev.
 - The suppression radius was 5.0 m, which is the dev rack pitch.
 - The sensor height was fixed at 1.0 m.
 
-Some of these we had tuned on dev deliberately, and some were defaults that
-happened to work there. Either way, dev was the only map any of them had been
-tested on.
+
 
 ## Act II: letting the map set the constants
 
@@ -219,7 +220,9 @@ ground truth.
 The first results looked excellent. The open yard, a nearly empty paved area,
 scored 91.
 
-![Us, looking at a 91 on an almost empty yard](blog_img/reaction.webp)
+![A man in glasses pointing at a butterfly, asking "Is this a pigeon?"](blog_img/pigeon.jpg)
+
+*Us, pointing at a 91 on an almost empty yard: is this localization?*
 
 That should have been hard, and it turned out to be fake. Our renderer cast the
 synthetic scans against the same point cloud that we then handed to the localizer
@@ -253,6 +256,10 @@ We sorted 355 failures on the corrected benchmark.
 
 77.5% were recall failures. Most of Act I had gone into refinement and ranking,
 and no amount of either can recover a pose that was never on the list.
+
+![Gendo Ikari with his hands folded in front of his face, glasses glinting](blog_img/gendo.jpg)
+
+*Us, realizing most of the misses happened before the part we'd spent a week on.*
 
 So we scored the correlation surface directly at the ground-truth pose. The
 truth was almost always a strong peak. In the curved tunnel, which scored 24.78 with
@@ -336,8 +343,11 @@ below random on the dashed corridor.
 Dev went down, from 99.952 to 99.895. About 0.011 of that is the price of replacing
 hand-tuned constants with measured ones. The other 0.047 is the offset correction. On an
 unknown map the 2.4 mm offset doesn't correct anything; it just shifts every pose
-by 2.4 mm, so we dropped it. We'd rather ship the lower dev number we can
-defend.
+by 2.4 mm, so we dropped it. We'd rather ship the lower dev number we can defend.
+
+![Trade offer meme with Truth from Fullmetal Alchemist: I receive your arm and your leg, you receive a botched transmutation](blog_img/trade_offer.jpg)
+
+*Trade offer: I receive 0.057 points on dev. You receive 19 points on maps we'd never seen.*
 
 Five maps remain unsolved: the open yard, the dashed corridor, the street,
 the curved tunnel and the sloped floor, scoring between 9.7 and 25.5, with SR@fine 0.000 on four of them and 0.033 on the yard.
@@ -350,6 +360,10 @@ against 30,878 in a warehouse.
 That doesn't prove those maps are impossible, and we only tested our own family of
 methods. It does mean that the correlator, the ICP refiner and the camera are all
 working from the same 41 points.
+
+![Roy Mustang pulling on his ignition glove, a transmutation circle on the back](blog_img/mustang_gloves.jpg)
+
+*Mustang's gloves are useless in the rain. Our correlator is useless with 41 points.*
 
 ## What we'd tell ourselves on day one
 
