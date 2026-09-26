@@ -8,17 +8,11 @@ tags: ["blog"]
 
 
 
-Two days before the deadline, our localizer scored 99.9 out of 100 on the only map
-we had. Then we found out the evaluation might use a completely different map:
-maybe a small room, maybe a long road with two dashed lines painted on it. We
-generated a few maps like that and ran the same code on them. On a 400 m dashed
-corridor it scored 1.22. Guessing at random scores 1.64.
+By 14 September our localizer scored 99.9 out of 100 on the only map we had, a 161 × 98 × 12 m warehouse. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* On 16 September, two days before the deadline, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
 
-![Our dev-tuned method on four maps. 99.91 on the dev warehouse, 61.60 on a second warehouse, 19.24 in a small room, and 1.22 in a dashed corridor, below the 1.637 random baseline](blog_img/hook.png)
+![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
 
-![Reiner Braun clenching his fist against a cloudy sky, moments before revealing he is the Armored Titan](blog_img/reiner.jpg)
-
-*eternal.ag, two days before the deadline: "the eval map could be anything." Right here? Right now?*
+*Our localizer, 400 m dashed corridor, two days before the deadline. Random guessing scored higher.*
 
 This post is about how that happened, and what we did in the two days after. Most
 of the "general" choices in our pipeline turned out to be facts about one
@@ -148,17 +142,11 @@ On 16 September, two days before the deadline, eternal.ag clarified the evaluati
 The eval map is anonymous. It could be a small room or a kilometres-long road with
 two dashed lines, and it replaces the dev warehouse inside the code we submit.
 
-We had written our bet down a week earlier, in our notes: *"hidden set = SAME
-warehouse, new poses."* It was wrong.
+Our bet was wrong.
 
 We measured what it cost that evening, with 30 synthetic poses per map:
 
-| map | size (m) | our score |
-|---|---|---|
-| dev warehouse | 161 × 98 × 12.2 | 99.91 |
-| a second warehouse | 120 × 80 × 8 | 61.60 |
-| small room | 8 × 6 × 2.8 | 19.24 |
-| dashed corridor | 400 × 8 × 1.3 | 1.22 |
+![Our dev-tuned method on four maps. 99.91 on the dev warehouse, 61.60 on a second warehouse, 19.24 in a small room, and 1.22 in a dashed corridor, below the 1.637 random baseline](blog_img/hook.png)
 
 The second warehouse hurt most. It's the same kind of building with a different
 rack pitch, and we lost 38 points on it.
