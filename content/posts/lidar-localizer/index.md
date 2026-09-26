@@ -33,13 +33,11 @@ ground-truth poses. We call it dev.
 
 From day one we bet that the hidden set would be the same warehouse with new poses, so we tuned for that warehouse and nothing else. With four days to go we scored 99.9 out of 100 on dev.
 
-With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
+With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22, which is WORSE than guessing at random (1.64).
 
 ![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
 
-We had been overfitting to dev on purpose since day one, so every constant in the pipeline was a fact about one warehouse. This post is about the two days we spent rebuilding the search so it measures those facts from whatever map it is given. On the way we found that our own benchmark was flattering us by up to
-87 points, and that most of our failures had a different cause from the one we
-had been working on.
+Every constant in our pipeline was a fact about that one warehouse. This post is about the two days we spent rebuilding the search so it measures those facts from whatever map it's given. Along the way we found that our own benchmark was flattering us by up to 87 points, and that most of our failures had a different cause from the one we'd been working on.
 
 ## Act I: getting very good at one warehouse
 
@@ -124,8 +122,7 @@ was worth +0.05.
 
 We spent more time on those 3 mm than on anything else. One at a time we ruled out
 scan noise, grid resolution, surface normals, the robust loss, five ICP variants,
-downsampling, map tilt and range scale. The test that settled it was simple: start
-the refiner exactly at the ground-truth pose and see where it goes. It walks 2.4 mm away, every time.
+downsampling, map tilt and range scale. What settled it was starting the refiner exactly at the ground-truth pose. It walks 2.4 mm away, every time.
 
 The map and the ground truth disagree by 2.4 mm. The best possible fit of a scan
 against this map isn't at the true pose, so no registration method can score past
@@ -147,7 +144,7 @@ rack pitch, and we lost 38 points on it.
 
 ### Every constant was a fact about dev
 
-We had tuned for dev from day one, so every constant we checked was a measurement of it:
+Every constant we checked was a measurement of dev:
 
 - Band heights were fractions of the map's height. On dev that gives bands from
   0.12 to 10 m. In a 1.3 m corridor it gives bands from 1 cm to 1.1 m.
@@ -240,7 +237,7 @@ SR@fine 0.000, the true pose was among the top four peaks in every failing scan.
 The search had found it, and then suppression deleted it.
 
 After taking the best peak, the search blanks out
-everything within a radius so the next candidate is a genuinely different place.
+everything within a radius so the next candidate is a different place.
 The first map-adaptive version set that radius to a tenth of the search window,
 which is 7 m on any map scanned with a 70 m sensor. If a wrong peak scored slightly
 higher and sat within 7 m of the truth, the truth was erased. In the tunnel, 66% of
