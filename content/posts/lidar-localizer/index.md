@@ -35,10 +35,7 @@ With four days to go, we scored 99.9 out of 100 on dev. Our notes from a week ea
 
 ![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
 
-This post is about how that happened, and what we did in the two days after. Most
-of the "general" choices in our pipeline turned out to be facts about one
-warehouse. We rebuilt the search so it measures those facts from whatever map it
-is given. On the way we found that our own benchmark was flattering us by up to
+We had been overfitting to dev on purpose since day one, so every constant in the pipeline was a fact about one warehouse. This post is about the two days we spent rebuilding the search so it measures those facts from whatever map it is given. On the way we found that our own benchmark was flattering us by up to
 87 points, and that most of our failures had a different cause from the one we
 had been working on.
 
@@ -146,9 +143,9 @@ We measured what it cost that evening, with 30 synthetic poses per map:
 The second warehouse hurt most. It's the same kind of building with a different
 rack pitch, and we lost 38 points on it.
 
-### Our "general" choices were warehouse facts
+### Every constant was a fact about dev
 
-Every constant we checked turned out to be a measurement of dev, the only map any of them had ever been tested on.
+We had tuned for dev from day one, so every constant we checked was a measurement of it:
 
 - Band heights were fractions of the map's height. On dev that gives bands from
   0.12 to 10 m. In a 1.3 m corridor it gives bands from 1 cm to 1.1 m.
