@@ -82,7 +82,7 @@ the next gains came from refinement:
 | 9 | GICP, 40 m crop | 99.86 | better registration |
 | 4 | two-stage ICP + Huber loss | 99.905 (99.952 with the offset correction below) | refinement precision |
 
-Plain ICP pulls each scan point toward the nearest map point. GICP (generalized ICP) also models the surface around each point, so a point on a wall gets pulled onto the wall's plane, which is what you want on flat walls and floors. Add a 40 m crop, meaning the refiner only looks at map points within 40 m, and that's the 99.86 row. The 99.905 row adds a second, tighter ICP pass and a Huber loss, which limits how far a few bad matches can drag the answer.
+The refiner nudges the scan until it lines up with the map. We switched to a version (GICP) that treats walls and floors as flat surfaces, and had it only look at the map within 40 m of the robot. That's 99.86. A second, finer pass, plus a rule that stops a few bad matches from dragging the answer off, got us to 99.905.
 
 ### What didn't work
 
