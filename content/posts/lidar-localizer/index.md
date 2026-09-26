@@ -36,7 +36,7 @@ There's no GPS and no starting guess. You output the robot's full 6-DoF pose.
 
 Each scenario is scored on translation error `e_t` and rotation error `e_r`:
 
-```
+```python
 L = 0.7 * min(e_t / 2 m, 1) + 0.3 * min(e_r / 20°, 1)
 score = 100 * (1 - mean L)
 ```
