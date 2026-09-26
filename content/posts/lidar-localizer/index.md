@@ -8,21 +8,6 @@ tags: ["blog"]
 
 
 
-By 14 September our localizer scored 99.9 out of 100 on the only map we had, a 161 × 98 × 12 m warehouse. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* On 16 September, two days before the deadline, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
-
-![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
-
-*Our localizer, 400 m dashed corridor, two days before the deadline. Random guessing scored higher.*
-
-This post is about how that happened, and what we did in the two days after. Most
-of the "general" choices in our pipeline turned out to be facts about one
-warehouse. We rebuilt the search so it measures those facts from whatever map it
-is given. On the way we found that our own benchmark was flattering us by up to
-87 points, and that most of our failures had a different cause from the one we
-had been working on.
-
-## The problem
-
 We took this on at TechQuest, a hackathon held at IIT Patna for the first time this year. We picked the robotics problem, set by eternal.ag. A robot is dropped somewhere in a building. You get one 360°
 LiDAR sweep (a 32-beam laser scanner that returns a cloud of 3D points), one
 camera frame, and a point cloud of the building with geometry only, no colour.
@@ -41,6 +26,19 @@ fraction of scenarios within 0.5 m and 5°.
 
 We had one development map: a 161 × 98 × 12 m warehouse with 40 scans and their
 ground-truth poses. We call it dev.
+
+By 14 September we scored 99.9 out of 100 on dev. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* On 16 September, two days before the deadline, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
+
+![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
+
+*The dashed corridor.*
+
+This post is about how that happened, and what we did in the two days after. Most
+of the "general" choices in our pipeline turned out to be facts about one
+warehouse. We rebuilt the search so it measures those facts from whatever map it
+is given. On the way we found that our own benchmark was flattering us by up to
+87 points, and that most of our failures had a different cause from the one we
+had been working on.
 
 ## Act I: getting very good at one warehouse
 
@@ -93,7 +91,7 @@ matches can't drag the answer.
 
 ### What didn't work
 
-We logged every rejected idea with the number that killed it.
+
 
 Our first instinct was that the camera would tell repeating aisles
 apart. An edge-based re-ranker did pick the true pose 37 out of 40 times. But every
@@ -133,16 +131,11 @@ against this map isn't at the true pose, so no registration method can score pas
 that on raw poses. Subtracting the offset looked defensible, since a quirk of the map would carry over to an evaluation on the same
 map.
 
-By 14 September we had a system tuned to within millimetres on one building. All of it
-rested on the evaluation using that building.
+
 
 ## The day the problem statement changed
 
-On 16 September, two days before the deadline, eternal.ag clarified the evaluation.
-The eval map is anonymous. It could be a small room or a kilometres-long road with
-two dashed lines, and it replaces the dev warehouse inside the code we submit.
-
-Our bet was wrong.
+On 16 September the clarification came. The eval map is anonymous, and it replaces the dev warehouse inside the code we submit. Our bet was wrong.
 
 We measured what it cost that evening, with 30 synthetic poses per map:
 
@@ -205,9 +198,9 @@ scored 91.
 
 ![A man in glasses pointing at a butterfly, asking "Is this a pigeon?"](blog_img/pigeon.jpg)
 
-*Us, pointing at a 91 on an almost empty yard: is this localization?*
 
-That should have been hard, and it turned out to be fake. Our renderer cast the
+
+An empty yard should be hard. The 91 was fake. Our renderer cast the
 synthetic scans against the same point cloud that we then handed to the localizer
 as its map. A point cloud has random density: some cells have a few more points
 than others. The scan inherited exactly that pattern, so scan and map shared a
@@ -264,7 +257,7 @@ The fixes were:
 The share of scenarios with the truth in the shortlist went from 0.496 to 0.668,
 and the mean over the 18 unseen maps went from 47.21 to 56.56.
 
-### Looking far away on the office map
+### The far returns decide the office map
 
 The office map is a grid of thin partitions with desks scattered through it:
 
@@ -324,10 +317,6 @@ hand-tuned constants with measured ones. The other 0.047 is the offset correctio
 unknown map the 2.4 mm offset doesn't correct anything; it just shifts every pose
 by 2.4 mm, so we dropped it. We'd rather ship the lower dev number we can defend.
 
-![Trade offer meme with Truth from Fullmetal Alchemist: I receive your arm and your leg, you receive a botched transmutation](blog_img/trade_offer.jpg)
-
-*Trade offer: I receive 0.057 points on dev. You receive 19 points on maps we'd never seen.*
-
 Five maps remain unsolved: the open yard, the dashed corridor, the street,
 the curved tunnel and the sloped floor, scoring between 9.7 and 25.5, with SR@fine 0.000 on four of them and 0.033 on the yard.
 For two of them the scans themselves are thin. Counting returns more than 0.15 m
@@ -342,9 +331,7 @@ working from the same 41 points.
 
 ## What we'd tell ourselves on day one
 
-1. Write the premise down. "Hidden set = same map" was one line in our
-   notes, and because it was there, we knew within hours of the
-   clarification which parts of the work it invalidated.
+1. Write the premise down. Ours was one line in our notes, and because it was there we knew within hours of the clarification which parts of the work it invalidated.
 2. Treat a tuned constant as a claim about the data. The band heights, window
    size and suppression radius were each a fact about dev. Every one we replaced
    with a measurement survived the map change.
