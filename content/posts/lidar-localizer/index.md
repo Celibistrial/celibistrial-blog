@@ -290,7 +290,7 @@ before comparing them, that took the office map from SR@fine 0.17 to
 The dev submission stayed byte-identical from the day before the deadline on, which is our check that
 the derived constants come from the map alone.
 
-![Per-map score on the 18 synthetic test maps before (grey, mean 47.21) and after (blue, mean 64.42), with 95% bootstrap intervals over poses](blog_img/bench_ci.png)
+![Per-map score on the 18 synthetic test maps before (grey, mean 47.21) and after (blue, mean 64.42), with the final score's 95% bootstrap interval shaded](blog_img/bench_ci.png)
 
 A note on sample size: each synthetic map has 30 poses (23 and 29 on the two
 smallest rooms, where there isn't space for more). The intervals in the chart are
