@@ -325,16 +325,8 @@ That doesn't prove those maps are impossible, and we only tested our own family 
 methods. It does mean that the correlator, the ICP refiner and the camera are all
 working from the same 41 points.
 
-## What we'd tell ourselves on day one
+## So yeah
 
-1. Write the premise down. Ours was one line in our notes, and because it was there we knew within hours of the clarification which parts of the work it invalidated.
-2. Treat a tuned constant as a claim about the data. The band heights, window
-   size and suppression radius were each a fact about dev. Every one we replaced
-   with a measurement survived the map change.
-3. Check the benchmark before trusting it. The synthetic benchmark scored the yard
-   at 91 because the scans shared the map's sampling noise. A synthetic benchmark can
-   tell you what to reject, never what to ship.
-4. Log the negatives. About half of our experiment log is rejected ideas with the
-   number that killed each one. That's what stopped us trying the camera a fourth
-   time, and what let us trace the 3 mm offset to the map instead of guessing.
+We spent two weeks getting really good at one warehouse, and then found out the test might not be a warehouse at all. Two days later the thing reads its constants off whatever map you hand it, went from 47 to 64 on maps it had never seen, and still gets lost in an empty yard.
 
+If there's a lesson, it's to write down what you're betting on, and to try breaking your benchmark before you believe it.
