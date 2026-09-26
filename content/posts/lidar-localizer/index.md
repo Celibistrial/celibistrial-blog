@@ -31,7 +31,9 @@ fraction of scenarios within 0.5 m and 5°.
 We had one development map: a 161 × 98 × 12 m warehouse with 40 scans and their
 ground-truth poses. We call it dev.
 
-With four days to go, we scored 99.9 out of 100 on dev. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
+From day one we bet that the hidden set would be the same warehouse with new poses, so we tuned for that warehouse and nothing else. With four days to go we scored 99.9 out of 100 on dev.
+
+With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
 
 ![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
 
