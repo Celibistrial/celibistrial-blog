@@ -12,7 +12,7 @@ tags: ["blog"]
 > All you get is one look around and a map of the building with no colour on it.
 > Can you tell where you are?
 
-That was eternal.ag's challenge at TechQuest, a new hackathon at IIT Patna. A robot is dropped somewhere in a building. You get one 360°
+That was eternal.ag's challenge at TechQuest, a new two-week hackathon at IIT Patna. A robot is dropped somewhere in a building. You get one 360°
 LiDAR sweep (a 32-beam laser scanner that returns a cloud of 3D points), one
 camera frame, and a point cloud of the building with geometry only, no colour.
 There's no GPS and no starting guess. You output the robot's full 6-DoF pose.
@@ -31,7 +31,7 @@ fraction of scenarios within 0.5 m and 5°.
 We had one development map: a 161 × 98 × 12 m warehouse with 40 scans and their
 ground-truth poses. We call it dev.
 
-By 14 September we scored 99.9 out of 100 on dev. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* On 16 September, two days before the deadline, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
+With four days to go, we scored 99.9 out of 100 on dev. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
 
 ![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
 
@@ -76,14 +76,14 @@ break the tie. That fixed scenario 14 and took dev to 99.51, 40 out of 40.
 With every scenario in the right place, the remaining error was all precision, so
 the next gains came from refinement:
 
-![Dev score for each version we shipped, from the 97.74 baseline to 99.905 raw (99.952 with the offset correction) on 14 September, and the 99.895 map-adaptive version shipped on 17 September](blog_img/dev_timeline.png)
+![Dev score for each version we shipped, from the 97.74 baseline to 99.905 raw (99.952 with the offset correction) four days before the deadline, and the 99.895 map-adaptive version shipped the day before](blog_img/dev_timeline.png)
 
-| date | version | dev score | what moved it |
+| days left | version | dev score | what moved it |
 |---|---|---|---|
-| 7 Sep | provided baseline | 97.74 | starting point |
-| 7 Sep | rack band reweighted | 99.51 | fixes scenario 14 |
-| 9 Sep | GICP, 40 m crop | 99.86 | better registration |
-| 14 Sep | two-stage ICP + Huber loss | 99.905 (99.952 with the offset correction below) | refinement precision |
+| 11 | provided baseline | 97.74 | starting point |
+| 11 | rack band reweighted | 99.51 | fixes scenario 14 |
+| 9 | GICP, 40 m crop | 99.86 | better registration |
+| 4 | two-stage ICP + Huber loss | 99.905 (99.952 with the offset correction below) | refinement precision |
 
 GICP (generalized ICP) is ICP that models the local surface shape around each
 point, so flat walls and floors pull the alignment in the right direction instead
@@ -137,7 +137,7 @@ map.
 
 ## The day the problem statement changed
 
-On 16 September the clarification came. The eval map is anonymous, and it replaces the dev warehouse inside the code we submit. Our bet was wrong.
+Then, with two days to go, the clarification came. The eval map is anonymous, and it replaces the dev warehouse inside the code we submit. Our bet was wrong.
 
 We measured what it cost that evening, with 30 synthetic poses per map:
 
@@ -286,14 +286,14 @@ before comparing them, that took the office map from SR@fine 0.17 to
 
 ## Where it ended up
 
-| date | version | 18 unseen maps (mean) | dev |
+| days left | version | 18 unseen maps (mean) | dev |
 |---|---|---|---|
-| 16 Sep | dev-tuned version | 45.24 (on the corrected benchmark) | 99.91 |
-| 17 Sep | map-derived constants + candidate harvest | 56.56 | 99.89 |
-| 18 Sep | + new verification statistic, refine every candidate | 61.02 | 99.89 |
-| 18 Sep | + far-field check | 64.42 | 99.89 |
+| 2 | dev-tuned version | 45.24 (on the corrected benchmark) | 99.91 |
+| 1 | map-derived constants + candidate harvest | 56.56 | 99.89 |
+| final day | + new verification statistic, refine every candidate | 61.02 | 99.89 |
+| final day | + far-field check | 64.42 | 99.89 |
 
-The dev submission stayed byte-identical from 17 September on, which is our check that
+The dev submission stayed byte-identical from the day before the deadline on, which is our check that
 the derived constants come from the map alone.
 
 ![Per-map score on the 18 synthetic test maps before (grey, mean 47.21) and after (blue, mean 64.42), with 95% bootstrap intervals over poses](blog_img/bench_ci.png)
