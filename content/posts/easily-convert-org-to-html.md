@@ -5,15 +5,11 @@ date: "2024-01-01"
 tags: ["blog"]
 ---
 
+Here's a snippet that lets you pick a CSS theme whenever you export an org file to HTML.
 
-
-\[2024-01-23 Tue\]
-
-Easy snippet to convert any org document to html
-
-*   put css files in `~/.emacs.d/org-css/` (or change org-theme-css-dir)
-*   run `toggle-org-custom-inline-style` in a org buffer associated with a file
-*   `C-c C-e` to export to html , it should ask you for a theme now
+1.  Put your CSS files in `~/.emacs.d/org-css/`, or change `org-theme-css-dir` to wherever you keep them.
+2.  Run `toggle-org-custom-inline-style` in an org buffer that's visiting a file.
+3.  Export to HTML with `C-c C-e`. It should now ask you which theme to use.
 
 ```elisp
 ;; put your css files there
@@ -57,4 +53,4 @@ Easy snippet to convert any org document to html
         (message "Custom header file %s doesnt exist")))))
 ```
 
-PS: picked up this snippet from [u/aaptel](https://www.reddit.com/r/emacs/comments/3pvbag/is_there_a_collection_of_css_styles_for_org/) just wrote this so others can find this snippet easier
+I didn't write this. I found it in a comment by [u/aaptel](https://www.reddit.com/r/emacs/comments/3pvbag/is_there_a_collection_of_css_styles_for_org/) and wrote this post so it's easier for other people to find.
