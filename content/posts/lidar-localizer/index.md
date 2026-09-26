@@ -33,9 +33,11 @@ ground-truth poses. We call it dev.
 
 From day one we bet that the hidden set would be the same warehouse with new poses, so we tuned for that warehouse and nothing else. With four days to go we scored 99.9 out of 100 on dev.
 
-With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22, which is WORSE than guessing at random (1.64).
+With two days to go, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them.
 
-![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
+![Izuku Midoriya from My Hero Academia pressing his hands together over his face, looking up hopefully](blog_img/deku.jpg)
+
+On a 400 m dashed corridor it scored 1.22, which is WORSE than guessing at random (1.64).
 
 Every constant in our pipeline was a fact about that one warehouse. This post is about the two days we spent rebuilding the search so it measures those facts from whatever map it's given. Along the way we found that our own benchmark was flattering us by up to 87 points, and that most of our failures had a different cause from the one we'd been working on.
 
