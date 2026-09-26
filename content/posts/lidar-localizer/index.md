@@ -12,7 +12,7 @@ tags: ["blog"]
 > All you get is one look around and a map of the building with no colour on it.
 > Can you tell where you are?
 
-We took this on at TechQuest, a hackathon held at IIT Patna for the first time this year. We picked the robotics problem, set by eternal.ag. A robot is dropped somewhere in a building. You get one 360°
+A robot is dropped somewhere in a building. You get one 360°
 LiDAR sweep (a 32-beam laser scanner that returns a cloud of 3D points), one
 camera frame, and a point cloud of the building with geometry only, no colour.
 There's no GPS and no starting guess. You output the robot's full 6-DoF pose.
