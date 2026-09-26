@@ -12,7 +12,7 @@ tags: ["blog"]
 > All you get is one look around and a map of the building with no colour on it.
 > Can you tell where you are?
 
-A robot is dropped somewhere in a building. You get one 360°
+That was eternal.ag's challenge at TechQuest, a new hackathon at IIT Patna. A robot is dropped somewhere in a building. You get one 360°
 LiDAR sweep (a 32-beam laser scanner that returns a cloud of 3D points), one
 camera frame, and a point cloud of the building with geometry only, no colour.
 There's no GPS and no starting guess. You output the robot's full 6-DoF pose.
@@ -34,8 +34,6 @@ ground-truth poses. We call it dev.
 By 14 September we scored 99.9 out of 100 on dev. Our notes from a week earlier spelled out the bet behind that number: *"hidden set = SAME warehouse, new poses."* On 16 September, two days before the deadline, eternal.ag clarified that the eval map could be anything: a small room, a kilometres-long road with two dashed lines painted on it. We generated a few maps like that and ran the same code on them. On a 400 m dashed corridor it scored 1.22. Guessing at random scores 1.64.
 
 ![Yamcha from Dragon Ball Z lying face-down in a crater after being defeated](blog_img/yamcha.jpg)
-
-*The dashed corridor.*
 
 This post is about how that happened, and what we did in the two days after. Most
 of the "general" choices in our pipeline turned out to be facts about one
