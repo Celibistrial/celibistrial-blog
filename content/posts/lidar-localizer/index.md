@@ -88,26 +88,13 @@ The refiner nudges the scan until it lines up with the map. We switched to a ver
 
 
 
-Our first instinct was that the camera would tell repeating aisles
-apart. An edge-based re-ranker did pick the true pose 37 out of 40 times. But every
-near-tie on dev was the same heading at a different position, and one camera with
-no depth can't measure position against repeating structure. The LiDAR sees 360°
-with 2 cm range noise, the camera sees 90° with no range, and the map has no colour
-for pixels to match. We estimated that letting the camera decide close calls was
-worth about −5 points, so it shipped switched off.
+We thought the camera could tell the repeating aisles apart, and a camera-based check did pick the right pose 37 out of 40 times. The trouble is that every close call on dev was the right direction in the wrong spot. A single camera can't judge distance, so it can't tell one identical aisle from the next. The LiDAR sees all the way around and measures distance to about 2 cm, the camera sees 90° and measures none, and the map has no colour to compare pixels against. Letting the camera break ties looked like it would cost about 5 points, so we left it off.
 
-Coarse-to-fine search (a quick low-resolution pass, then a detailed one) was
-faster but lost accuracy on two synthetic test sets.
-On a closer look, 92.6% of the "architecture win" we had credited to it came from
-switching to GICP at the same time.
+Searching coarse-to-fine (a rough pass first, then a detailed one) was faster but less accurate on two of our synthetic test sets. When we looked closer, 92.6% of the gain we'd credited to it actually came from switching to GICP at the same time.
 
-Hedging didn't help either. The format lets you submit three weighted guesses per scenario.
-Splitting the weight costs you every time your first guess is right, and ours was
-right on all 40. We measured it anyway, and sending one pose is correct.
+Hedging didn't help either. You can submit three weighted guesses per scenario, but splitting the weight costs you whenever your first guess is right, and ours was right on all 40. We checked anyway: one guess is best.
 
-Yaw refinement helped on synthetic scans and cost 3.45 points on real scans
-with half the view blocked. A hand-tuned change that drops the floor band, which we had expected to be
-the fragile one, held up.
+Fine-tuning the heading helped on synthetic scans but cost 3.45 points on real scans with half the view blocked. The hand-tuned tweak we expected to break, dropping the floor band, held up.
 
 ### The 3 mm that wasn't ours
 
