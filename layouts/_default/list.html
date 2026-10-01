@@ -6,7 +6,17 @@
       <li>
         <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (cond .Params.yearOnly "2006" "Jan 2, 2006") }}</time>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="views" data-path="{{ .RelPermalink }}"></span>
       </li>
     {{ end }}
   </ul>
+  <script>
+    fetch('/views.json')
+      .then(r => r.ok && r.json())
+      .then(d => d && document.querySelectorAll('.views[data-path]').forEach(el => {
+        const n = d[el.dataset.path]
+        if (n) el.textContent = ' · ' + n.toLocaleString() + ' views'
+      }))
+      .catch(() => {})
+  </script>
 {{ end }}
