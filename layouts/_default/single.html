@@ -5,8 +5,15 @@
     <p class="post-meta">
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (cond .Params.yearOnly "2006" "Jan 2, 2006") }}</time>
       {{ if gt .ReadingTime 0 }} · {{ .ReadingTime }} min read{{ end }}
+      <span class="views"></span>
     </p>
     {{ end }}
     {{ .Content }}
   </article>
+  <script>
+    fetch('/views.json')
+      .then(r => r.ok && r.json())
+      .then(d => { const n = d && d[location.pathname]; if (n) document.querySelector('.views').textContent = ' · ' + n.toLocaleString() + ' views' })
+      .catch(() => {})
+  </script>
 {{ end }}
