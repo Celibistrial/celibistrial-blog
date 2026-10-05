@@ -1,6 +1,6 @@
 ---
 title: "Making highlight.js work with org-export"
-description: "A blog post about making highlight.js work with org-export."
+description: "Org-mode's HTML export leaves code blocks unhighlighted. Load highlight.js through org-publish-project-alist to fix it."
 date: "2024-01-01"
 yearOnly: true
 tags: ["blog"]

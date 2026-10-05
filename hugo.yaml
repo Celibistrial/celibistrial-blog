@@ -5,7 +5,8 @@ enableRobotsTXT: true
 enableEmoji: true
 
 params:
-  description: Notes, writing, and things worth remembering.
+  description: Gaurav Choudhury writes about robotics, LiDAR localization, Emacs and Linux tooling.
+  tagline: Gaurav Choudhury on robotics, Emacs and Linux
 
 pagination:
   pagerSize: 10

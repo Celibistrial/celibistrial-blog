@@ -2,6 +2,8 @@
 title: "Generalizing a LiDAR localizer to ridiculous extents"
 description: "From one warehouse to rooms, tunnels and a 400 m corridor with two dashed lines: how our TechQuest localizer went from 99.9 on one map to working on maps it had never seen."
 date: "2026-09-26"
+seoTitle: "LiDAR localization on unseen maps: generalizing a TechQuest localizer"
+images: ["blog_img/hook.png"]
 tags: ["blog"]
 
 ---
