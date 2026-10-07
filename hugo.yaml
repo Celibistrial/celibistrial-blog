@@ -3,6 +3,8 @@ locale: en-us
 title: celibistrial
 enableRobotsTXT: true
 enableEmoji: true
+# /tags/blog/ was an unlinked duplicate of /posts/ (every post is tagged "blog")
+disableKinds: [taxonomy, term]
 
 params:
   description: Gaurav Choudhury writes about robotics, LiDAR localization, Emacs and Linux tooling.
